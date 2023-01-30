@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snake Game</title>
+    <style>
+      canvas {
+        border: 1px solid #d3d3d3;
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Snake Game</h1>
+    <p>Use the arrow keys on your keyboard to play the game.</p>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <script>
+      // Create the canvas
+      var canvas = document.getElementById("gameCanvas");
+      var ctx = canvas.getContext("2d");
+
+      // Set the starting point
+      var x = canvas.width/2;
+      var y = canvas.height-30;
+
+      // Create the snake
+      var snakeSize = 10;
+      var snakeX = (Math.floor(Math.random()*(canvas.width-snakeSize))+snakeSize);
+      var snakeY = (Math.floor(Math.random()*(canvas.height-snakeSize))+snakeSize);
+      var snake = [];
+      var snakeLength = 5;
+
+      // Create the food
+      var foodX = (Math.floor(Math.random()*(canvas.width-snakeSize))+snakeSize);
+      var foodY = (Math.floor(Math.random()*(canvas.height-snakeSize))+snakeSize);
+      var score = 0;
+
+      // Control the snake
+      var dx = snakeSize;
+      var dy = 0;
+
+      // Draw the snake
+      function drawSnake() {
+        for(var i = 0; i < snake.length; i++) {
+          ctx.fillStyle = (i == 0)? "green" : "white";
+          ctx.fillRect(snake[i].x, snake[i].y, snakeSize, snakeSize);
+        }
+      }
+
+      // Draw the food
+      function drawFood() {
+        ctx.fillStyle = "red";
+        ctx.fillRect(foodX, foodY, snakeSize, snakeSize);
+      }
+
+      // Draw the score
+      function drawScore() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: "+score, 8, 20);
+      }
+
+      // Draw the game
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawSnake();
+        drawFood();
+        drawScore();
+        x += dx;
+        y += dy;
+        if (x < 0 || x > canvas.width-snakeSize || y < 0 || y > canvas.height-snakeSize) {
+          document.location.reload();
+        }
+        if (x == foodX && y == foodY) {
+          score++;
+          foodX = (Math.floor(Math.random()*(canvas.width-snakeSize))+snakeSize);
+          foodY = (Math.floor(Math.random()*(canvas.height-snakeSize))+snakeSize);
+        }
+        else {
+          snake.pop();
+        }
+        var newHead = {
+          x: x,
+          y: y
+        };
+        snake.unshift(newHead);
+      }
+
+      // Set the speed
+      setInterval(draw, 100);
+
+      // Control the snake
+      document.addEventListener("keydown", direction);
+      function direction(event) {
+        if(event.keyCode == 37 && dx != snakeSize) {
+          dx = -snakeSize;
+          dy = 0;
+        }
+        else if(event.keyCode == 38 && dy != snakeSize) {
+          dx = 0;
+          dy = -snakeSize;
+        }
+        else if(event.keyCode == 39 && dx != -snakeSize) {
+          dx = snakeSize;
+          dy = 0;
+        }
+        else if(event.keyCode == 40 && dy != -snakeSize) {
+          dx = 0;
+          dy = snakeSize;
+        }
+      }
+    </script>
+  </body>
+</html>
