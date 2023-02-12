@@ -23,7 +23,16 @@
 //   const element = arr[3][0][1];
 //   console.log (element)
 
-const threeArr = [1, 4, 6];
-const oneDown = threeArr.pop(1);
-console.log(oneDown);
-console.log(threeArr);
+// const threeArr = [1, 4, 6];
+// const oneDown = threeArr.pop(1);
+// console.log(oneDown);
+// console.log(threeArr);
+
+
+// Setup
+const myArray = [["John", 23], ["cat", 2]];
+
+// Only change code below this line
+const removedFromArray = myArray.pop()
+console.log(myArray);
+console.log(removedFromArray);
