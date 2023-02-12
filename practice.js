@@ -29,10 +29,23 @@
 // console.log(threeArr);
 
 
-// Setup
-const myArray = [["John", 23], ["cat", 2]];
 
-// Only change code below this line
-const removedFromArray = myArray.pop()
-console.log(myArray);
-console.log(removedFromArray);
+// Setup
+// const myArray = [["John", 23], ["cat", 2]];
+
+// // Only change code below this line
+// const removedFromArray = myArray.pop()
+// console.log(myArray);
+// console.log(removedFromArray);
+
+
+// function reusableFunction (){
+//     console.log("hi world");
+//   }
+//   function(reusableFunction)
+
+function functionWithArgs (arg1,arg2){
+    console.log(arg1+arg2);
+  }
+  functionWithArgs(1,2)
+
