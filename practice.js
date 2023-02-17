@@ -44,8 +44,30 @@
 //   }
 //   function(reusableFunction)
 
-function functionWithArgs (arg1,arg2){
-    console.log(arg1+arg2);
-  }
-  functionWithArgs(1,2)
+// function functionWithArgs (arg1,arg2){
+//     console.log(arg1+arg2);
+//   }
+//   functionWithArgs(1,2)
 
+// const someVar = "Hat";
+
+// function myFun() {
+//   const someVar = "Head";
+//   return someVar;
+// }
+
+// console.log(myFun)
+function testLessOrEqual(val) {
+    if (val<=12) {  // Change this line
+        
+      return "Smaller Than or Equal to 12";
+    }
+  
+    if (val<=24) {  // Change this line
+      return "Smaller Than or Equal to 24";
+    }
+  
+    return "More Than 24";
+  }
+  
+  testLessOrEqual(10);
